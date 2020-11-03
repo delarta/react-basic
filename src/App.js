@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import DororoImage from "./components/DororoImage";
 import ChonkyCat from "./components/ChonkyCat";
 
-import Counter from "./components/Counter"
+import "./assets/css/style.css";
+
+import Counter from "./components/Counter";
 
 class App extends Component {
   render() {

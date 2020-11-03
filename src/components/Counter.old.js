@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 
-import { Container, FormGroup, Input, Button, Label, Card } from "reactstrap";
-
 class Counter extends Component {
   constructor() {
     super();
@@ -56,44 +54,38 @@ class Counter extends Component {
 
   render() {
     return (
-      <Container className="vh-100 d-flex align-items-center justify-content-center">
+      <div className="container vh-100 d-flex align-items-center justify-content-center">
         <div>
           <h1 className="text-center">{this.state.counter}</h1>
           <div>
             <div>
-              <FormGroup>
-                <Label>Insert Number</Label>
-                <Input
-                  type="number"
+              <div className="form-group">
+                <input
                   onChange={this.handleInput}
+                  type="number"
                   name="addInput"
                   value={this.state.input}
+                  className="form-control"
                 />
-              </FormGroup>
+              </div>
             </div>
-            <Button color="primary" onClick={this.add} className="mr-2">
+            <button className="btn btn-primary mr-2" onClick={this.add}>
               Add
-            </Button>
-            <Button color="primary" onClick={this.substract} className="mr-2">
+            </button>
+            <button className="btn btn-info mr-2" onClick={this.substract}>
               Substract
-            </Button>
-            <Button color="primary" onClick={this.multiply} className="mr-2">
+            </button>
+            <button className="btn btn-warning" onClick={this.multiply}>
               Multiply
-            </Button>
-
+            </button>
             <div className="my-2">
-              <Button
-                block
-                color="danger"
-                onClick={this.resetCounter}
-                className="mr-2"
-              >
-                Reset
-              </Button>
-            </div>
+            <button onClick={this.resetCounter} className="btn btn-secondary btn-block">
+              Reset
+            </button>
+          </div>
           </div>
         </div>
-      </Container>
+      </div>
     );
   }
 }
