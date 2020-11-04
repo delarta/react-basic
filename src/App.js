@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import Posts from "./components/Posts"
+import MovieSearch from "./components/MovieSearch";
 
 import "./assets/css/style.css";
 
@@ -8,7 +8,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Posts />
+        <MovieSearch />
       </div>
     );
   }

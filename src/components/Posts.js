@@ -6,7 +6,9 @@ import {
   ListGroupItem,
   ListGroupItemHeading,
   ListGroupItemText,
-  Button
+  Button,
+  Input,
+  FormGroup,
 } from "reactstrap";
 
 class Posts extends Component {
@@ -15,6 +17,7 @@ class Posts extends Component {
 
     this.state = {
       posts: [],
+      search: "",
     };
   }
 
@@ -22,6 +25,16 @@ class Posts extends Component {
     fetch("https://jsonplaceholder.typicode.com/users/1/posts")
       .then((res) => res.json())
       .then((json) => this.setState({ posts: json }));
+  }
+
+  componentDidUpdate() {
+    if (this.state.search === "chonky cat") {
+      alert("You're not suppose to be in here");
+    }
+
+    if (this.state.posts.length === 0) {
+      alert("Post not found");
+    }
   }
 
   render() {
@@ -40,17 +53,30 @@ class Posts extends Component {
           >
             <h1 className="display-3 text-white">Posts</h1>
           </div>
-          <Jumbotron
-            className="mt-4 "
-            style={{
-              backgroundImage:
-                "url('https://pbs.twimg.com/media/DyLF14DXgAYzWor.jpg')",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
+          <FormGroup className="my-3">
+            <Input
+              type="text"
+              value={this.state.search}
+              placeholder="Search Post"
+              onChange={(e) => {
+                this.setState({ search: e.target.value });
+                console.log(e.target.value);
+              }}
+            />
+          </FormGroup>
+          <Button
+            onClick={() => {
+              this.setState({
+                posts: [
+                  ...this.state.posts.filter(
+                    (post) => post.title === this.state.search
+                  ),
+                ],
+              });
             }}
           >
-            <h1 className="display-3 text-white">See Other Stories</h1>
-          </Jumbotron>
+            Search
+          </Button>
           <ListGroup>
             {this.state.posts.length !== 0 ? (
               this.state.posts.map((post) => (
