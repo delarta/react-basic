@@ -1,16 +1,11 @@
 import React, { Component } from "react";
 
-import MovieSearch from "./components/MovieSearch";
-import MovieSearchAxios from "./components/MovieSearchAxios";
-import ChonkyCat from "./components/ChonkyCat";
-import Counter from "./components/Counter";
-import Posts from "./components/Posts";
-import PostDetails from "./components/PostDetails";
 import Navbar from "./components/Navbar";
 
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./assets/css/style.css";
 import Tmdb from "./components/Tmdb";
+import TmdbHooks from "./components/TmdbHooks";
 
 class App extends Component {
   render() {
@@ -19,27 +14,11 @@ class App extends Component {
         <BrowserRouter>
           <Navbar />
           <Switch>
-            <Route path="/cats">
-              <ChonkyCat />
+            <Route exact path="/tmdb-hooks">
+              <TmdbHooks />
             </Route>
-
-            <Route exact path="/counter">
-              <Counter />
-            </Route>
-
-            <Route exact path="/posts">
-              <Posts />
-            </Route>
-
-            <Route exact path="/tmdb">
-              <Tmdb />
-            </Route>
-
-            <Route exact path="/posts/:id" component={PostDetails}/>
-
             <Route exact path="/">
-              <MovieSearch />
-              <MovieSearchAxios />
+              <Tmdb />
             </Route>
           </Switch>
         </BrowserRouter>

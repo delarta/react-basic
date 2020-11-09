@@ -19,6 +19,7 @@ class Tmdb extends Component {
 
     this.state = {
       movies: [],
+      categories: [],
     };
   }
 
@@ -39,33 +40,33 @@ class Tmdb extends Component {
       <div>
         <Container>
           <Jumbotron>
-            <h1 className="display-3">TMDB</h1>
+            <h1 className="display-3">TMDB (CLASS)</h1>
           </Jumbotron>
 
           <Row>
-            
-            {
-              (this.state.movies.length !== 0 ? (
-                this.state.movies.map((movie) => (
-                  <Col md={3} key={movie.id} >
-                    <Card  style={{
-                      marginBottom: "16px"
-                    }}>
-                      <CardImg src={`${imgUrl}${movie.poster_path}`} />
-                      <CardBody style={{
-                    minHeight: "200px",
-                    
-                  }}>
-                        <h2>{movie.title}</h2>
-                        <p>{movie.release_date}</p>
-                      </CardBody>
-                    </Card>
-                  </Col>
-                ))
-              ) : (
-                <div>Loading...</div>
+            {this.state.movies.length !== 0 ? (
+              this.state.movies.map((movie) => (
+                <Col md={3} key={movie.id}>
+                  <Card
+                    style={{
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <CardImg src={`${imgUrl}${movie.poster_path}`} />
+                    <CardBody
+                      style={{
+                        minHeight: "200px",
+                      }}
+                    >
+                      <h2>{movie.title}</h2>
+                      <p>{movie.release_date}</p>
+                    </CardBody>
+                  </Card>
+                </Col>
               ))
-            }
+            ) : (
+              <div>Loading...</div>
+            )}
           </Row>
         </Container>
       </div>
