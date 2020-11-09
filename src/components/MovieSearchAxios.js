@@ -14,9 +14,11 @@ import {
   Col
 } from "reactstrap";
 
+import axios from "axios"
+
 const urlAPI = "http://www.omdbapi.com/?apikey=7d7dd851&";
 
-class MovieSearch extends Component {
+class MovieSearchAxios extends Component {
   constructor() {
     super();
 
@@ -30,17 +32,9 @@ class MovieSearch extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch(`${urlAPI}s=${this.state.title}&y=${this.state.year}`)
-      .then((res) => {
-        console.log("FETCH=====",res)
-        return res.json()
-      })
-      .then((json) => {
-        this.setState({ movies: json.Search });
-      })
-      .catch(err => {
-        alert(err)
-      })
+    axios.get(`${urlAPI}s=${this.state.title}&y=${this.state.year}`)
+    .then(res => this.setState({movies: res.data.Search}))
+
   };
 
   handleChangeTitle = (e) => {
@@ -60,7 +54,7 @@ class MovieSearch extends Component {
       <div>
         <Container>
           <Jumbotron className="mt-3">
-            <h1 className="display-3">Movie Search (FETCH)</h1>
+            <h1 className="display-3">Movie Search (AXIOS)</h1>
           </Jumbotron>
           <Form onSubmit={this.handleSubmit}>
             <FormGroup>
@@ -111,4 +105,4 @@ class MovieSearch extends Component {
   }
 }
 
-export default MovieSearch;
+export default MovieSearchAxios;

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import MovieSearch from "./components/MovieSearch";
+import MovieSearchAxios from "./components/MovieSearchAxios";
 import ChonkyCat from "./components/ChonkyCat";
 import Counter from "./components/Counter";
 import Posts from "./components/Posts";
@@ -9,6 +10,7 @@ import Navbar from "./components/Navbar";
 
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./assets/css/style.css";
+import Tmdb from "./components/Tmdb";
 
 class App extends Component {
   render() {
@@ -17,7 +19,7 @@ class App extends Component {
         <BrowserRouter>
           <Navbar />
           <Switch>
-            <Route exact path="/chonky">
+            <Route path="/cats">
               <ChonkyCat />
             </Route>
 
@@ -29,11 +31,15 @@ class App extends Component {
               <Posts />
             </Route>
 
-            <Route exact path="/posts/:id" component={PostDetails} />
+            <Route exact path="/tmdb">
+              <Tmdb />
+            </Route>
 
+            <Route exact path="/posts/:id" component={PostDetails}/>
 
             <Route exact path="/">
               <MovieSearch />
+              <MovieSearchAxios />
             </Route>
           </Switch>
         </BrowserRouter>
