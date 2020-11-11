@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import {
   Button,
   Card,
@@ -14,6 +15,8 @@ import axios from "axios";
 function TmdbHooks() {
   const imgUrl = "https://image.tmdb.org/t/p/w500";
   const apiUrl = "https://api.themoviedb.org/3/";
+
+  const history = useHistory();
 
   // Cara membuat state di Hooks
   const [movies, setMovies] = useState([]);
@@ -65,7 +68,6 @@ function TmdbHooks() {
           {genres.length !== 0 ? (
             genres.map((genre) => (
               <Button
-
                 key={genre.id}
                 onClick={() => getMoviesByGenre(genre.id)}
                 className="mr-2 mb-2 rounded-pill"
@@ -84,6 +86,9 @@ function TmdbHooks() {
             movies.map((movie) => (
               <Col key={movie.id} md={3}>
                 <Card
+                  onClick={() => {
+                    history.push("/movie-detail");
+                  }}
                   style={{
                     marginBottom: "16px",
                   }}
