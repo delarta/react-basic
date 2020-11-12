@@ -24,7 +24,7 @@ class App extends Component {
               <RegisteredUser />
             </Route>
 
-            <Route exact path="/movie-detail">
+            <Route exact path="/movie-detail/:movieId">
               <MovieDetail />
             </Route>
 

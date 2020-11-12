@@ -38,6 +38,7 @@ function TmdbHooks() {
         `${apiUrl}movie/popular?api_key=8508a0bd1efc493c4bfa095b6a37f250&language=en-US&page=1`
       )
       .then((res) => {
+        console.log(res.data.results)
         setMovies(res.data.results);
       });
 
@@ -87,7 +88,7 @@ function TmdbHooks() {
               <Col key={movie.id} md={3}>
                 <Card
                   onClick={() => {
-                    history.push("/movie-detail");
+                    history.push(`/movie-detail/${movie.id}`);
                   }}
                   style={{
                     marginBottom: "16px",
