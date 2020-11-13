@@ -10,12 +10,12 @@ class Navbar extends Component {
         <Nav>
           <NavItem>
             <Link className="nav-link" to="/">
-              TMDB (CLASS)
+              Home
             </Link>
           </NavItem>
           <NavItem>
-            <Link className="nav-link" to="/tmdb-hooks">
-              TMDB (HOOKS)
+            <Link className="nav-link" to="/watchlist">
+              Watchlist
             </Link>
           </NavItem>
         </Nav>

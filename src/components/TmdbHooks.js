@@ -38,7 +38,7 @@ function TmdbHooks() {
         `${apiUrl}movie/popular?api_key=8508a0bd1efc493c4bfa095b6a37f250&language=en-US&page=1`
       )
       .then((res) => {
-        console.log(res.data.results)
+        console.log(res.data.results);
         setMovies(res.data.results);
       });
 
@@ -56,6 +56,22 @@ function TmdbHooks() {
         `${apiUrl}discover/movie?api_key=8508a0bd1efc493c4bfa095b6a37f250&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${id}`
       )
       .then((res) => setMovies(res.data.results));
+  };
+
+  const handleAddToWatchlist = (movie) => {
+    if (localStorage.getItem("watchlist")) {
+      // get item from localstorage with watchlist key
+      let watchlist = JSON.parse(localStorage.getItem("watchlist"));
+
+      // add move into watchlist array
+      watchlist = [...watchlist, movie];
+
+      // Set new value to localstorage
+      localStorage.setItem("watchlist", JSON.stringify(watchlist));
+    } else {
+      localStorage.setItem("watchlist", JSON.stringify([movie]));
+    }
+    // Add to localstorage, key = watchlist
   };
 
   return (
@@ -87,9 +103,6 @@ function TmdbHooks() {
             movies.map((movie) => (
               <Col key={movie.id} md={3}>
                 <Card
-                  onClick={() => {
-                    history.push(`/movie-detail/${movie.id}`);
-                  }}
                   style={{
                     marginBottom: "16px",
                   }}
@@ -102,6 +115,27 @@ function TmdbHooks() {
                   >
                     <h2>{movie.title}</h2>
                     <p>{movie.release_date}</p>
+                    <div>
+                      <Button
+                        block
+                        color="primary"
+                        onClick={() => {
+                          history.push(`/movie-detail/${movie.id}`);
+                        }}
+                      >
+                        View Details
+                      </Button>
+                      <Button
+                        block
+                        color="primary"
+                        outline
+                        onClick={() => {
+                          handleAddToWatchlist(movie);
+                        }}
+                      >
+                        Add to Watchlist
+                      </Button>
+                    </div>
                   </CardBody>
                 </Card>
               </Col>

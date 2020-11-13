@@ -7,12 +7,15 @@ import Register from "./components/Register";
 import RegisteredUser from "./components/RegisteredUser";
 import Login from "./components/Login";
 import MovieDetail from "./components/MovieDetail";
+import WatchList from "./components/WatchList";
+import Navbar from "./components/Navbar";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <BrowserRouter>
+        <Navbar />
           <Switch>
             <Route exact path="/login">
               <Login />
@@ -22,6 +25,10 @@ class App extends Component {
             </Route>
             <Route exact path="/user">
               <RegisteredUser />
+            </Route>
+
+            <Route exact path="/watchlist">
+              <WatchList />
             </Route>
 
             <Route exact path="/movie-detail/:movieId">
