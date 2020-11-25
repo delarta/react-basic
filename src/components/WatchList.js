@@ -20,7 +20,6 @@ const WatchList = () => {
   useEffect(() => {
     // Check if there's value in watchlist localstorage
     if (localStorage.getItem("watchlist")) {
-      
       // set movies state value to localstorage
       setMovies(JSON.parse(localStorage.getItem("watchlist")));
     }
@@ -29,10 +28,10 @@ const WatchList = () => {
   const handleDelete = (id) => {
     // get item from localstorage with watchlist key
     let watchlist = JSON.parse(localStorage.getItem("watchlist"));
-    
-    // filter movies that is NOT equal to id 
+
+    // filter movies that is NOT equal to id
     watchlist = [...watchlist.filter((movie) => movie.id !== id)];
-    
+
     // Set new value to localstorage
     localStorage.setItem("watchlist", JSON.stringify(watchlist));
 
@@ -40,11 +39,19 @@ const WatchList = () => {
     setMovies(watchlist);
   };
 
+  const clearWatchlist = () => {
+    localStorage.removeItem("watchlist"); //delete all localstorage item
+    setMovies(null);
+  };
+
   return (
     <div>
       <Container>
         <Jumbotron>
           <h1 className="display-3">Watchlist</h1>
+          <Button color="danger" onClick={() => clearWatchlist()}>
+            Clear Watchlist
+          </Button>
         </Jumbotron>
         <div>
           {movies ? (

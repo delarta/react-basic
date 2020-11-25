@@ -1,17 +1,22 @@
-
 /* 
 .form-group .form-control{
   color: red
 } */
 
-
 /* Chonky */
-.chonky-img{
+.chonky-img {
   width: 50%;
 }
 
-
-h1{
+h1 {
   font-size: 30px;
 }
 
+#big-title {
+  color: teal;
+}
+
+#big-title:hover {
+  cursor: pointer;
+  color: blueviolet;
+}

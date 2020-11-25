@@ -10,7 +10,7 @@ import {
   Button,
   Form,
 } from "reactstrap";
-import axios from "axios"
+import axios from "axios";
 
 // {
 //   "firstName": "Neo Armstrong",
@@ -21,37 +21,34 @@ import axios from "axios"
 // }
 
 const Login = () => {
-  const urlLogin = "https://5fa4bcd2732de900162e85ef.mockapi.io/api/register";
+  const urlLogin =
+    "http://ec2-3-1-218-225.ap-southeast-1.compute.amazonaws.com/auth/login";
 
   const history = useHistory();
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [gender, setGender] = useState("");
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const userData = {
-      firstName: firstName,
-      lastName: lastName,
-      gender: gender,
-      email: email,
-      password: password,
+      username, // username: username
+      password, // password: password
     };
 
     axios({
       method: "POST",
       url: urlLogin,
-      data: userData
+      data: userData,
     })
-    .then(() => {
-      history.push("/tmdb-hooks")
-    })
-    .catch((err) => console.log(err));
-
+      .then((res) => {
+        localStorage.setItem("token", res.data.token)
+      })
+      .then(() => {
+        history.push("/")
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -64,13 +61,12 @@ const Login = () => {
         <CardBody>
           <h2 className="mb-4">Login Form</h2>
           <Form onSubmit={handleSubmit}>
-            
             <FormGroup>
-              <Label>Email</Label>
+              <Label>Username</Label>
               <Input
-                type="email"
-                name="email"
-                onChange={(e) => setEmail(e.target.value)}
+                type="text"
+                name="username"
+                onChange={(e) => setUsername(e.target.value)}
               />
             </FormGroup>
             <FormGroup>
