@@ -6,8 +6,10 @@ import Home from "./components/Home";
 import Parent from "./components/Parent";
 import Posts from "./components/Posts";
 import NavBar from "./components/NavBar";
-import Pokemon from "./components/Pokemon";
+import Pokemon from "./components/PokemonClass";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import PokemonHooks from "./components/PokemonHooks";
+import PokemonDetails from "./components/PokemonDetails";
 
 class App extends React.Component {
   render() {
@@ -20,6 +22,9 @@ class App extends React.Component {
           <Route path="/counter" component={Counter} />
           <Route path="/posts" component={Posts} />
           <Route path="/pokemon" component={Pokemon} />
+          
+          <Route exact path="/pokemon-hooks" component={PokemonHooks} />
+          <Route path="/pokemon-hooks/:id" component={PokemonDetails} />
           
 
           <Route path="/parent" component={Parent} />

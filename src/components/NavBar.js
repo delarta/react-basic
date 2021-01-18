@@ -15,12 +15,13 @@ const NavBar = () => {
       }}
     >
       <Link to="/">Home</Link>
-      <Link to="/comic">Comic</Link>
+      <Link to="/pokemon">Pokemon Class</Link>
+      <Link to="/pokemon-hooks">Pokemon Hooks</Link>
+      {/* <Link to="/comic">Comic</Link>
       <Link to="/counter">Counter</Link>
-      <Link to="/posts">Posts</Link>
-      <Link to="/pokemon">Pokemon</Link>
-      <Link to="/parent">Parent</Link>
-      <Link to="/parent/child">Child</Link>
+      <Link to="/posts">Posts</Link> */}
+      {/* <Link to="/parent">Parent</Link>
+      <Link to="/parent/child">Child</Link> */}
     </div>
   );
 };
