@@ -1,0 +1,13 @@
+.pokemon-container{
+  width: 1024px;
+  margin: 2rem auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+  grid-gap: 1rem;
+}
+
+.pokemon-item{
+  border: 1px solid rgba(0, 0,0, 0.1);
+  border-radius: 5px;
+  padding: 1.5rem;
+}

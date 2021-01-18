@@ -1,0 +1,18 @@
+body, *{
+  margin: 0;
+  padding: 0;
+  font-size: 24px;
+}
+#counter{
+  background-color: aquamarine;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#counter h1{
+  font-size: 96px;
+  text-align: center;
+}

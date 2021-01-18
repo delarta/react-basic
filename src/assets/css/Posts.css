@@ -1,0 +1,9 @@
+.post-container{
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+
+.post-item{
+  margin-bottom: 2rem;
+}

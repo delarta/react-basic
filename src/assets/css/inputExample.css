@@ -1,0 +1,15 @@
+
+html{
+  font-size: 16px;
+}
+
+#inputExample{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+}
+
+.input-form{
+  margin-bottom: 16px;
+}
