@@ -15,6 +15,10 @@ function PokemonDetails(props) {
         console.log(response.data);
       })
       .catch((err) => console.log(err));
+
+    return () => {
+      setData(null)
+    }
   }, []);
 
   return (
