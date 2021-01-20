@@ -34,3 +34,30 @@
 .search-result img{
   width: 100%;
 }
+
+
+.navigation{
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navigation button{
+  padding: 1rem;
+  border: none;
+  background-color: tomato;
+  color: white;
+  border-radius: 8px;
+}
+
+.card-button{
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-button button{
+  padding: 8px
+}

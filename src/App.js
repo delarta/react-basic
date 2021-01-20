@@ -6,11 +6,11 @@ import Home from "./components/Home";
 import Parent from "./components/Parent";
 import Posts from "./components/Posts";
 import NavBar from "./components/NavBar";
-import Pokemon from "./components/PokemonClass";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import PokemonHooks from "./components/PokemonHooks";
-import PokemonDetails from "./components/PokemonDetails";
+import Pokemon from "./components/Pokemon/PokemonClass";
+import PokemonHooks from "./components/Pokemon/PokemonHooks";
+import PokemonDetails from "./components/Pokemon/PokemonDetails";
 
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 class App extends React.Component {
   render() {
     return (

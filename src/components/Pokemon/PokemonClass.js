@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import axios from "axios";
 
-import "../assets/css/Pokemon.css";
+import "../../assets/css/Pokemon.css";
 
 class Pokemon extends Component {
   constructor() {

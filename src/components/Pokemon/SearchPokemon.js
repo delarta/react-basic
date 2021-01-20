@@ -7,10 +7,10 @@ const SearchPokemon = (props) => {
   const [searchResult, setSearchResult] = useState("");
 
   const handleSearch = () => {
-    let searchResult = props.data.find((item) => item.name === search);
+    let results = props.data.find((item) => item.name === search);
 
-    if (searchResult) {
-      setSearchResult(searchResult);
+    if (results) {
+      setSearchResult(results);
     } else {
       setSearchResult("");
     }

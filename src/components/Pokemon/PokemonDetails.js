@@ -7,7 +7,6 @@ function PokemonDetails(props) {
 
   useEffect(() => {
     const pokemonId = props.match.params.id;
-
     axios
       .get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
       .then((response) => {
