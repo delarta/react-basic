@@ -4,6 +4,8 @@ import axios from "axios";
 import SearchPokemon from "./SearchPokemon";
 import PokemonCard from "./PokemonCard";
 
+import { connect } from "react-redux";
+
 function PokemonHooks(props) {
   const [data, setData] = useState([]);
 
@@ -31,10 +33,17 @@ function PokemonHooks(props) {
           };
         });
         // console.log("NEW", newResponse);
-        setData(newResponse);
+
+        props.getPokemonData(newResponse);
+
+        // setData(newResponse);
         setLoading(false);
       });
   }, []);
+
+  useEffect(() => {
+    console.log("FROM REDUX", props.pokemonData);
+  });
 
   const getDetails = (id) => {
     console.log(id);
@@ -48,19 +57,11 @@ function PokemonHooks(props) {
           item.favourite = true;
         }
         return item;
-      })
+      }),
     ]);
 
     setFavPokemon([pokemon, ...favPokemon]);
   };
-
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
-  // useEffect(() => {
-  //   console.log(favPokemon);
-  // });
 
   return (
     <div id="pokemon">
@@ -74,18 +75,14 @@ function PokemonHooks(props) {
           <SearchPokemon getDetails={getDetails} data={data} />
 
           <div className="pokemon-container">
-            {loading ? (
-              <div>Loading...</div>
-            ) : (
-              data.map((item) => (
-                <PokemonCard
-                  key={item.id}
-                  data={item}
-                  getDetails={getDetails}
-                  addFavourite={addFavourite}
-                />
-              ))
-            )}
+            {props.pokemonData.map((item) => (
+              <PokemonCard
+                key={item.id}
+                data={item}
+                getDetails={getDetails}
+                addFavourite={addFavourite}
+              />
+            ))}
           </div>
         </div>
       ) : (
@@ -104,4 +101,17 @@ function PokemonHooks(props) {
   );
 }
 
-export default PokemonHooks;
+const mapStateToProps = (state) => {
+  return {
+    pokemonData: state.pokemonData,
+    favPokemon: state.favPokemon,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getPokemonData: (data) => dispatch({ type: "GET_DATA", payload: data }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PokemonHooks);
