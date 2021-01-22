@@ -6,13 +6,9 @@ import PokemonCard from "./PokemonCard";
 
 import { connect } from "react-redux";
 
+import "../assets/css/Pokemon.css";
+
 function PokemonHooks(props) {
-  const [data, setData] = useState([]);
-
-  const [page, setPage] = useState(1);
-
-  const [favPokemon, setFavPokemon] = useState([]);
-
   const [loading, setLoading] = useState(true);
 
   // componentDidMount
@@ -32,17 +28,15 @@ function PokemonHooks(props) {
             favourite: false,
           };
         });
-        // console.log("NEW", newResponse);
 
         props.getPokemonData(newResponse);
 
-        // setData(newResponse);
         setLoading(false);
       });
   }, []);
 
   useEffect(() => {
-    console.log("FROM REDUX", props.pokemonData);
+    // console.log("FROM REDUX", props.pokemonData);
   });
 
   const getDetails = (id) => {
@@ -51,52 +45,21 @@ function PokemonHooks(props) {
   };
 
   const addFavourite = (pokemon) => {
-    setData([
-      ...data.map((item) => {
-        if (item.id === pokemon.id) {
-          item.favourite = true;
-        }
-        return item;
-      }),
-    ]);
-
-    setFavPokemon([pokemon, ...favPokemon]);
+    props.setFavPokemon(pokemon);
   };
 
   return (
     <div id="pokemon">
-      <div className="navigation">
-        <button onClick={() => setPage(1)}>All Pokemon</button>
-        <button onClick={() => setPage(2)}>Fav Pokemon</button>
+      <div className="pokemon-container">
+        {props.pokemonData.map((item) => (
+          <PokemonCard
+            key={item.id}
+            data={item}
+            getDetails={getDetails}
+            addFavourite={addFavourite}
+          />
+        ))}
       </div>
-
-      {page === 1 ? (
-        <div>
-          <SearchPokemon getDetails={getDetails} data={data} />
-
-          <div className="pokemon-container">
-            {props.pokemonData.map((item) => (
-              <PokemonCard
-                key={item.id}
-                data={item}
-                getDetails={getDetails}
-                addFavourite={addFavourite}
-              />
-            ))}
-          </div>
-        </div>
-      ) : (
-        <div className="pokemon-container">
-          {favPokemon.map((item) => (
-            <PokemonCard
-              key={item.id}
-              data={item}
-              getDetails={getDetails}
-              addFavourite={addFavourite}
-            />
-          ))}
-        </div>
-      )}
     </div>
   );
 }
@@ -111,6 +74,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getPokemonData: (data) => dispatch({ type: "GET_DATA", payload: data }),
+    setFavPokemon: (newData) =>
+      dispatch({ type: "SET_FAV_POKEMON", payload: newData }),
   };
 };
 

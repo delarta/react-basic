@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 import PokemonCard from "./PokemonCard"
 
+
+
 const SearchPokemon = (props) => {
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState("");

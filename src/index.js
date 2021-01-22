@@ -4,23 +4,7 @@ import App from "./App";
 
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-
-let initialState = {
-  pokemonData: [],
-  favPokemon:[]
-};
-
-const rootReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case "GET_DATA":
-      return {
-        ...state,
-        pokemonData: action.payload,
-      };
-    default:
-      return state;
-  }
-}
+import rootReducer from "./redux/reducers/rootReducer"
 
 const store = createStore(rootReducer);
 
