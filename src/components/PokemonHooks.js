@@ -35,29 +35,16 @@ function PokemonHooks(props) {
       });
   }, []);
 
-  useEffect(() => {
-    // console.log("FROM REDUX", props.pokemonData);
-  });
-
   const getDetails = (id) => {
     console.log(id);
     props.history.push(`/pokemon-hooks/${id}`);
-  };
-
-  const addFavourite = (pokemon) => {
-    props.setFavPokemon(pokemon);
   };
 
   return (
     <div id="pokemon">
       <div className="pokemon-container">
         {props.pokemonData.map((item) => (
-          <PokemonCard
-            key={item.id}
-            data={item}
-            getDetails={getDetails}
-            addFavourite={addFavourite}
-          />
+          <PokemonCard key={item.id} data={item} getDetails={getDetails} />
         ))}
       </div>
     </div>
@@ -67,15 +54,12 @@ function PokemonHooks(props) {
 const mapStateToProps = (state) => {
   return {
     pokemonData: state.pokemonData,
-    favPokemon: state.favPokemon,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getPokemonData: (data) => dispatch({ type: "GET_DATA", payload: data }),
-    setFavPokemon: (newData) =>
-      dispatch({ type: "SET_FAV_POKEMON", payload: newData }),
   };
 };
 

@@ -7,7 +7,13 @@ const PokemonFav = (props) => {
   return (
     <div className="pokemon-container">
       {props.pokemon.map((item) => (
-        <PokemonCard key={item.id} data={item} />
+        <PokemonCard
+          key={item.id}
+          data={item}
+          getDetails={() => {
+            props.history.push(`/pokemon-hooks/${item.id}`);
+          }}
+        />
       ))}
     </div>
   );
