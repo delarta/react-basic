@@ -1,0 +1,7 @@
+
+
+ export default {
+  GET_DATA : "GET_DATA",
+  GET_DATA_ERROR : "GET_DATA_ERROR",
+  SET_FAV_POKEMON : "SET_FAV_POKEMON"
+ }
