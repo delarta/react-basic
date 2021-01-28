@@ -3,17 +3,20 @@ import PokemonHooks from "./components/PokemonHooks";
 import PokemonDetails from "./components/PokemonDetails";
 import PokemonFav from "./components/PokemonFav";
 import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
-import "./assets/css/style.css";
+
+import { Button } from "reactstrap";
 
 function App(props) {
   return (
     <BrowserRouter>
-      <div className="navigation">
+      <div className="text-center py-5">
         <Link to="/">
-          <button>All Pokemon</button>
+          <Button className="mr-3" color="primary">
+            All Pokemon
+          </Button>
         </Link>
         <Link to="/pokemon-fav">
-          <button>Fav Pokemon</button>
+          <Button color="primary">Fav Pokemon</Button>
         </Link>
       </div>
       <Switch>

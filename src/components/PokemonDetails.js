@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+import {Container, Card, CardBody, CardImg, CardTitle} from "reactstrap"
+
 import axios from "axios";
 
 function PokemonDetails(props) {
@@ -21,16 +23,17 @@ function PokemonDetails(props) {
   }, []);
 
   return (
-    <div id="pokemon-details">
-      <div className="pokemon-container">
+    <Container>
+   
         {data !== null && (
-          <div className="pokemon-item">
-            <img src={data.sprites.front_default} alt={data.name} />
-            <h2>{data.name}</h2>
-          </div>
+          <Card>
+            <CardImg src={data.sprites.front_default} alt={data.name}/>
+            <CardBody>
+              <CardTitle>{data.name}</CardTitle>
+            </CardBody>
+          </Card>
         )}
-      </div>
-    </div>
+    </Container>
   );
 }
 

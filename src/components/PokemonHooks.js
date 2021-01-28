@@ -8,13 +8,13 @@ import { connect } from "react-redux";
 
 import { getPokemonData } from "../redux/actions/pokemon";
 
-import "../assets/css/Pokemon.css";
+import { Container, Row, Col } from "reactstrap";
 
 function PokemonHooks(props) {
   // componentDidMount
-  // useEffect(() => {
-  //   props.getPokemonData();
-  // }, []);
+  useEffect(() => {
+    props.getPokemonData();
+  }, []);
 
   const getDetails = (id) => {
     console.log(id);
@@ -22,20 +22,21 @@ function PokemonHooks(props) {
   };
 
   const getData = () => {
-    props.getPokemon();
+    props.getPokemonData();
   };
 
   return (
-    <div id="pokemon">
-      <button onClick={getData}>Get Data</button>
-      <div className="pokemon-container">
+    <Container>
+      <Row>
         {props.errorMessage && <div> {props.errorMessage} </div>}
         {props.pokemonData.length !== 0 &&
           props.pokemonData.map((item) => (
-            <PokemonCard key={item.id} data={item} getDetails={getDetails} />
+            <Col key={item.id} className="mb-3" lg="3" md="6">
+              <PokemonCard key={item.id} data={item} getDetails={getDetails} />
+            </Col>
           ))}
-      </div>
-    </div>
+      </Row>
+    </Container>
   );
 }
 
@@ -48,7 +49,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getPokemon: () => dispatch(getPokemonData()),
+    getPokemonData: () => dispatch(getPokemonData()),
   };
 };
 
