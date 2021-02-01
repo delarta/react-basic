@@ -1,37 +1,36 @@
-import React, { Component } from "react";
-import { Nav, NavItem, Container } from "reactstrap";
+import React, { useState } from 'react';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+} from 'reactstrap';
 
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom"
 
-class Navbar extends Component {
-  render() {
-    return (
-      <Container>
-        <Nav>
-          <NavItem>
-            <Link className="nav-link" to="/">
-              Movie
-            </Link>
-          </NavItem>
-          <NavItem>
-            <Link className="nav-link" to="/cats">
-              Cats
-            </Link>
-          </NavItem>
-          <NavItem>
-            <Link className="nav-link" to="/posts">
-              Posts
-            </Link>
-          </NavItem>
-          <NavItem>
-            <Link className="nav-link" to="/counter">
-              Counter
-            </Link>
-          </NavItem>
-        </Nav>
-      </Container>
-    );
-  }
+const Example = (props) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => setIsOpen(!isOpen);
+
+  return (
+    <div>
+      <Navbar color="light" light expand="md">
+        <NavbarBrand> <Link to="/">Delta TV</Link></NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="ml-auto" navbar>
+            <NavItem>
+              <NavLink href="/components/">Components</NavLink>
+            </NavItem>
+          </Nav>
+        </Collapse>
+      </Navbar>
+    </div>
+  );
 }
 
-export default Navbar;
+export default Example;

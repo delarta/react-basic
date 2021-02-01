@@ -1,14 +1,41 @@
-.btn.btn-primary{
-  background-color: #c56183;
-  border-color: #c56183;
+.movies-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 16px;
 }
-/* 
-.form-group .form-control{
-  color: red
-} */
+
+.movie-item:hover{
+  cursor: pointer;
+  box-shadow: 0 0 20px 20px rgba(0, 0, 0, 0.2);
+}
+
+.movie-item img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.carousel-img {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+}
 
 
-/* Chonky */
-.chonky-img{
-  width: 50%;
+footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 200px;
+  background-color: #313131;
+  color: #fafafa;
+}
+
+
+.main-container{
+  min-height: calc(100vh - 256px);
+}
+
+.short-synopsis{
+  width: 60%;
 }
