@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 
 import { useParams } from "react-router-dom";
 
+import ReactStars from "react-rating-stars-component";
+
 import { getMovieDetails } from "../redux/actions/movie";
 
 import { IMG_SRC } from "../constants/constants";
@@ -36,7 +38,7 @@ function DetailPage(props) {
                 backgroundImage: `url('${IMG_SRC}${props.movieDetail.backdrop_path}')`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
-                color: "white"
+                color: "white",
               }}
               className="my-4"
             >
@@ -44,7 +46,12 @@ function DetailPage(props) {
                 <h1>{props.movieDetail.title}</h1>
                 <div className="ratings d-flex">
                   <div className="mr-3">
-                    {props.movieDetail.vote_average}/10
+                    <ReactStars
+                      size={18}
+                      value={props.movieDetail.vote_average / 2}
+                      edit={false}
+                      isHalf={true}
+                    />
                   </div>
                   <div>{props.movieDetail.vote_count} vote</div>
                 </div>

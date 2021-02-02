@@ -2,10 +2,11 @@ import axios from "axios"
 
 import {BASE_URL, API_KEY} from "../../constants/constants"
 
-export const getMovies = () => {
+export const getMovies = (page = 1) => {
   return dispatch => {
-    return axios.get(`${BASE_URL}movie/now_playing?api_key=${API_KEY}&language=en-US&page=1`)
+    return axios.get(`${BASE_URL}movie/now_playing?api_key=${API_KEY}&language=en-US&page=${page}`)
       .then(response => {
+        console.log(response)
         dispatch({type: "GET_MOVIES", payload: response.data.results})
       })
       .catch(err => console.log(err))
