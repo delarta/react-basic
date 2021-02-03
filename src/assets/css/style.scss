@@ -43,6 +43,18 @@ footer {
   min-height: calc(100vh - 256px);
 }
 
+
+#login{
+  min-height: calc(100vh - 256px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .card{
+    width: 50vw;
+  }
+}
+
 .short-synopsis {
   width: 60%;
 }

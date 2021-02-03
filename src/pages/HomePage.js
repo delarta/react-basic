@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 
 import { connect } from "react-redux";
 
-import { getMovies } from "../redux/actions/movie";
+import {
+  getMovies,
+  getGenres,
+  getMoviesByGenreId,
+} from "../redux/actions/movie";
 
 import CarouselHome from "../components/CarouselHome";
 
@@ -12,37 +16,51 @@ const imgSrc = "https://image.tmdb.org/t/p/w500";
 
 function HomePage(props) {
   const [page, setPage] = useState(1);
+  const [genreId, setGenreId] = useState(0);
 
   useEffect(() => {
     props.getMovies();
+    props.getGenres();
   }, [props.getMovies]);
 
   const handleChangePage = (pg) => {
     setPage(pg);
-
     props.getMovies(pg);
   };
 
-  const pagination = (totalPages) => {
-    let buttons = new Array(totalPages);
-
-    console.log(buttons.length);
-
-    return buttons.map((item, i) => (
-      <Button
-        onClick={() => handleChangePage(i + 1)}
-        color={page === i + 1 ? "primary" : "light"}
-        className="rounded-circle mr-2"
-      >
-        {i + 1}
-      </Button>
-    ));
+  const handleGetMovieByGenre = (id) => {
+    setGenreId(id);
+    props.getMoviesByGenreId(id);
   };
 
   return (
     <div>
       <CarouselHome />
+
       <Container className="mt-5">
+        <div className="my-3">
+          <Button
+            color={genreId === 0 ? "primary" : "light"}
+            className="mr-2 mt-2"
+            onClick={() => {
+              setGenreId(0);
+              props.getMovies();
+            }}
+          >
+            All
+          </Button>
+          {props.genres.length !== 0 &&
+            props.genres.map((genre, index) => (
+              <Button
+                color={genreId === genre.id ? "primary" : "light"}
+                className="mr-2 mt-2"
+                key={index}
+                onClick={() => handleGetMovieByGenre(genre.id)}
+              >
+                {genre.name}
+              </Button>
+            ))}
+        </div>
         <div className="movies-list">
           {props.movies.length !== 0
             ? props.movies.map((movie, index) => (
@@ -120,12 +138,15 @@ function HomePage(props) {
 const mapStateToProps = (state) => {
   return {
     movies: state.movies,
+    genres: state.genres,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getMovies: (page) => dispatch(getMovies(page)),
+    getGenres: () => dispatch(getGenres()),
+    getMoviesByGenreId: (id) => dispatch(getMoviesByGenreId(id)),
   };
 };
 
