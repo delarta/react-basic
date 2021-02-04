@@ -2,7 +2,8 @@ const initialState = {
   movies: [],
   genres: [],
   movieDetail: null,
-  token: localStorage.getItem('access_token') || ""
+  reviews: null,
+  token: localStorage.getItem("access_token") || "",
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -22,6 +23,16 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         movies: payload,
+      };
+    case "GET_REVIEWS_BY_MOVIE_ID":
+      return {
+        ...state,
+        reviews: payload,
+      };
+    case "POST_REVIEWS_BY_MOVIE_ID":
+      return {
+        ...state,
+        reviews: [payload, ...state.reviews],
       };
     case "GET_GENRES":
       return {

@@ -50,3 +50,22 @@ export const getMoviesByGenreId = (id) => {
       .catch((err) => console.log(err));
   };
 };
+
+export const getReviewsByMovieId = (movieId) => {
+  return (dispatch) => {
+    return axios
+      .get(`${BASE_URL}movie/${movieId}/reviews?api_key=${API_KEY}`)
+      .then((response) => {
+        dispatch({ type: "GET_REVIEWS_BY_MOVIE_ID", payload: response.data.results });
+      })
+      .catch((err) => console.log(err));
+  };
+};
+
+
+export const postReview = (data) => {
+  console.log("ACTION", data)
+  return (dispatch) => {
+    dispatch({ type: "POST_REVIEWS_BY_MOVIE_ID", payload: data });
+  };
+};
