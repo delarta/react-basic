@@ -9,6 +9,15 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
+    case "LOGOUT_SUCCESS":
+      return {
+        ...state,
+        token: "",
+      };
+    case "REGISTER_SUCCESS":
+      return {
+        ...state,
+      };
     case "LOGIN_SUCCESS":
       return {
         ...state,

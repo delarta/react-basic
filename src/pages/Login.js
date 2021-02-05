@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   Card,
@@ -25,6 +25,12 @@ function Login(props) {
     props.loginUser(username, password);
   };
 
+  useEffect(() => {
+    if (props.token) {
+      props.history.push("/");
+    }
+  }, [props]);
+
   return (
     <Container id="login">
       <Card>
@@ -49,11 +55,23 @@ function Login(props) {
             </FormGroup>
             <Button>Login</Button>
           </Form>
+          <div className="mt-3">
+            Doesn't have account?{" "}
+            <Button color="link" onClick={() => props.history.push("/register")}>
+              Register
+            </Button>
+          </div>
         </CardBody>
       </Card>
     </Container>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    token: state.token,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -61,4 +79,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

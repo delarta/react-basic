@@ -33,6 +33,12 @@ function HomePage(props) {
     props.getMoviesByGenreId(id);
   };
 
+  useEffect(() => {
+    if(!props.token){
+      props.history.push("login")
+    }
+  }, [props])
+
   return (
     <div>
       <CarouselHome />
@@ -139,6 +145,7 @@ const mapStateToProps = (state) => {
   return {
     movies: state.movies,
     genres: state.genres,
+    token: state.token
   };
 };
 
