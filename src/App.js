@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import DetailPage from "./pages/DetailPage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Onboarding from "./pages/Onboarding";
 
 import Navbar from "./components/NavBar";
 import Footer from "./components/Footer";
@@ -20,6 +21,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
+              <Route exact path="/onboarding" component={Onboarding} />
 
               <Route exact path="/" component={HomePage} />
               <Route exact path="/detail/:id" component={DetailPage} />

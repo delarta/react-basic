@@ -22,12 +22,14 @@ function Login(props) {
     e.preventDefault();
     console.log(username, password);
 
-    props.loginUser(username, password);
+    props.loginUser(username, password)
   };
 
   useEffect(() => {
-    if (props.token) {
-      props.history.push("/");
+    if(props.token && props.status){
+      props.history.push("/")
+    }else if(props.status === false){
+      props.history.push("/onboarding")
     }
   }, [props]);
 
@@ -70,6 +72,7 @@ function Login(props) {
 const mapStateToProps = (state) => {
   return {
     token: state.token,
+    status: state.status
   };
 };
 

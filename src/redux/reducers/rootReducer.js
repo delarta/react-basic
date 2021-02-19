@@ -4,6 +4,7 @@ const initialState = {
   movieDetail: null,
   reviews: null,
   token: localStorage.getItem("access_token") || "",
+  status: null
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -19,9 +20,17 @@ const rootReducer = (state = initialState, action) => {
         ...state,
       };
     case "LOGIN_SUCCESS":
+      console.log(payload)
       return {
         ...state,
-        token: payload,
+        token: payload.token,
+        status: payload.status
+      };
+    case "LOGIN_UPDATE_SUCCESS":
+      console.log(payload)
+      return {
+        ...state,
+        status: payload.status
       };
     case "GET_MOVIES":
       return {
